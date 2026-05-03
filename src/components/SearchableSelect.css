@@ -1,0 +1,102 @@
+/* =========================================
+   WRAPPER & Z-INDEX FIX 
+   ========================================= */
+.select-container {
+  position: relative;
+  width: 100%;
+  z-index: 1; /* Base layer so they stack normally when closed */
+}
+
+.select-container.is-open {
+  z-index: 1000; /* Brings the whole dropdown to the front when open */
+}
+
+/* =========================================
+   INPUT FIELD & ARROW
+   ========================================= */
+.select-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #2a2f3a;
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #667eea;
+}
+
+.input-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 1rem;
+  color: #888;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-arrow.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* =========================================
+   DROPDOWN LIST & ITEMS
+   ========================================= */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #2a2f3a;
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  list-style: none;
+  margin: 4px 0 0 0;
+  padding: 0.25rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Added shadow for visual lift */
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: background-color 0.1s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #3a3f50;
+}
+
+.dropdown-item.selected {
+  background-color: #3a4a6b;
+  color: #fff;
+}
+
+.no-results {
+  padding: 0.5rem 1rem;
+  color: #888;
+}

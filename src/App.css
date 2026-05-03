@@ -1,0 +1,187 @@
+/* Refined Dark Theme with Standard CSS (Hex Codes) */
+
+/* Define reusable colors for a cohesive design */
+:root {
+  --bg-page: #111827;       /* Darkest page background */
+  --bg-card: #1f2937;       /* Form container card background */
+  --text-main: #f3f4f6;     /* Off-white for main text and title */
+  --text-muted: #9ca3af;    /* Mid-gray for labels (readable) */
+  --border-main: #374151;   /* Dark gray for input borders */
+  --input-bg: #374151;      /* Background inside input fields */
+  --accent-main: #3b82f6;   /* Bright blue for interaction and button */
+  --accent-hover: #2563eb;  /* Darker blue for hover states */
+}
+.input-error {
+  border: 1px solid #e74c3c !important;
+}
+.required-asterisk {
+  color: #e74c3c;
+}
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+/* 1. Global / Layout Structure */
+.page-container {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, professional font stack */
+}
+
+.form-card {
+  width: 100%;
+  max-width: 480px;         /* Constrains the form width effectively */
+  background-color: var(--bg-card);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+  border: 1px solid #111827; /* Subtle border definition */
+}
+
+.form-title {
+  font-size: 2rem;           /* Scaled down slightly, more balanced */
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* 2. Registration Form and Inputs */
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;             /* Defined spacing between elements */
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 14px;          /* Scaled up slightly for readability */
+  font-weight: 600;
+  color: var(--text-muted); /* High contrast gray (readable) */
+  text-align: left;         /* Left-aligned for clarity */
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;          /* Standard, professional input size */
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  color: var(--text-main);  /* White text for input */
+  box-sizing: border-box;   /* Crucial for width consistency */
+  transition: all 0.2s ease-in-out;
+}
+
+.input-field:focus {
+  outline: none;            /* Remove default outline */
+  border-color: var(--accent-main); /* Bright focus border */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* Subtle focus ring */
+}
+
+/* Style for date picker (making it look good in dark mode) */
+input[type="date"] {
+  color: var(--text-main);
+  color-scheme: dark;       /* Standard way to theme native pickers */
+}
+
+/* Ensure calendar icon is white (may vary by browser) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+/* 3. Static Strength / Feedback Sections */
+/* Update App.jsx structure slightly to add these wrappers for styling */
+.strength-feedback-section {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.strength-bar-wrapper {
+  width: 100%;
+  height: 10px;
+  background-color: #374151; /* Match other input backgrounds */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.strength-bar-filler {
+  width: 30%;               /* Static Placeholder */
+  height: 100%;
+  background-color: #4b5563; /* Static Gray filler (weak) */
+  border-radius: 5px;
+}
+.required-asterisk {
+  color: #ef4444;
+  margin-left: 4px;
+}
+
+/* Red border when validation fails */
+.input-error {
+  border: 1px solid #ef4444 !important;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.error-message {
+  color: #fca5a5;
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: left;
+}
+.strength-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.feedback-panel {
+  width: 100%;
+  min-height: 80px;
+  padding: 16px;
+  background-color: rgba(55, 65, 81, 0.3); /* Defined container, transparent background */
+  border: 1px dashed var(--border-main);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-placeholder {
+  font-size: 14px;
+  color: #9ca3af;           /* Soft gray placeholder text */
+  font-style: italic;
+  text-align: center;
+}
+
+/* 4. Submit Button */
+.submit-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  background-color: var(--accent-main);
+  color: white;             /* White text for button */
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: var(--accent-hover);
+}
