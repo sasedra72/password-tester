@@ -7,6 +7,7 @@ function SearchableSelect({ options, value, onChange, placeholder, disabled }) {
   const [search, setSearch] = useState('');
   const [dropdownStyle, setDropdownStyle] = useState({});
   const ref = useRef(null);
+  const listRef = useRef(null); // ✅ ref for the portal dropdown
 
   const filtered = options.filter(o =>
     o.toLowerCase().includes(search.toLowerCase())
@@ -27,7 +28,6 @@ function SearchableSelect({ options, value, onChange, placeholder, disabled }) {
     if (open) updatePosition();
   }, [open]);
 
-  // ✅ Update position on scroll or resize
   useEffect(() => {
     if (!open) return;
     window.addEventListener('scroll', updatePosition, true);
@@ -40,7 +40,10 @@ function SearchableSelect({ options, value, onChange, placeholder, disabled }) {
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
+      if (
+        ref.current && !ref.current.contains(e.target) &&
+        listRef.current && !listRef.current.contains(e.target) // ✅ also check portal list
+      ) {
         setOpen(false);
         setSearch(value || '');
       }
@@ -89,9 +92,9 @@ function SearchableSelect({ options, value, onChange, placeholder, disabled }) {
         </span>
       </div>
 
-      {/* ✅ Portal renders at document.body — fully escapes all parent stacking */}
       {open && !disabled && createPortal(
         <ul
+          ref={listRef} // ✅ attached to the portal list
           className="dropdown-list"
           style={{
             position: 'absolute',
@@ -115,7 +118,7 @@ function SearchableSelect({ options, value, onChange, placeholder, disabled }) {
             <li className="no-results">No results</li>
           )}
         </ul>,
-        document.body // ✅ renders outside the form entirely
+        document.body
       )}
     </div>
   );

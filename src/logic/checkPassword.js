@@ -204,12 +204,14 @@ export function checkPassword(password, userInfo, hibpPwned = false) {
   else if (typeCount >= 2) varietyScore = 1;
   else                     varietyScore = 0;
 
-  // ── CATEGORY 3: Personal Info (0-2) ──
-  const optionalFieldsFilled = !!(city && phone && petName);
-  let personalScore = 0;
-  if (hasPersonalIssue)           personalScore = 0;
-  else if (!optionalFieldsFilled) personalScore = 1;
-  else                            personalScore = 2;
+  
+// ── CATEGORY 3: Personal Info (0-2)
+const requiredFieldsFilled = !!(fullName && dob && email && country);
+
+let personalScore = 0;
+if (hasPersonalIssue)          personalScore = 0; // personal info found in password
+else if (!requiredFieldsFilled) personalScore = 1; // required fields missing (shouldn't happen due to form validation)
+else                            personalScore = 2; // all required fields filled, no matches
 
   // ── CATEGORY 4: Breach / Common (0-2) ──
   let breachScore = 0;
